@@ -17,7 +17,7 @@ public class Product {
     }
 
     public Product() {
-        super();
+        System.out.println("哈哈有人在偷偷使用product的构造函数");
     }
 
     public Integer getId() {
@@ -26,6 +26,7 @@ public class Product {
 
     public void setId(Integer id) {
         this.id = id;
+        System.out.println("哈哈有人在偷偷使用setId()");
     }
 
     public String getName() {
@@ -34,6 +35,7 @@ public class Product {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+        System.out.println("哈哈有人在偷偷使用setName()");
     }
 
     public Integer getPrice() {
@@ -42,6 +44,7 @@ public class Product {
 
     public void setPrice(Integer price) {
         this.price = price;
+        System.out.println("哈哈有人在偷偷使用setPrice()");
     }
 
     public Integer getStock() {
@@ -50,5 +53,16 @@ public class Product {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+        System.out.println("哈哈有人在偷偷使用setStock()");
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                '}';
     }
 }

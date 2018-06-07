@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/web-resources/lib/bootstrap.css">
+    <title>product</title>
+</head>
+<body>
+    <div id="product" class="container">
+        <h3 style="background-color:#7FFFD4; font-family:verdana">商品信息</font></h3>
+        <br>
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">商品id</th>
+                <th scope="col">商品名称</th>
+                <th scope="col">商品价格</th>
+                <th scope="col">商品库存</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="p in productList">
+                <!--for(Prodyct p : productList)-->
+                <td>{{p.id}}</td>
+                <td>{{p.name}}</td>
+                <td>{{p.price}}</td>
+                <td>{{p.stock}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <br>
+        <hr>
+        <br>
+
+        <button class="btn btn-primary" v-on:click="doProductList">刷新</button>
+        <br><br>
+        <hr>
+        <br>
+        <h3  style="background-color:#7FFFD4; font-family:verdana">新增商品</h3>
+        <br>
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">商品名称</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" v-model="productAdd.name" required="" v-on:focus="didProductAdd">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="price" class="col-sm-2 col-form-label">商品价格</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="price" v-model="productAdd.price" required="" v-on:focus="didProductAdd">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="stock" class="col-sm-2 col-form-label">商品库存</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="stock" v-model="productAdd.stock" required="" v-on:focus="didProductAdd">
+            </div>
+        </div>
+        <button class="btn btn-primary" v-on:click="doProductAdd">提交</button>
+        <span class="text-success"> {{infoProductAdd}}</span>
+
+        <br><br>
+        <hr>
+        <br>
+
+        <h3 style="background-color:#7FFFD4; font-family:verdana">编辑商品</h3>
+        <br>
+        <div class="form-group row">
+            <label for="id" class="col-sm-2 col-form-label">待编辑商品id</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="id" v-model="productIdGet" required="" v-on:focus="didProductAdd">
+            </div>
+        </div>
+        <button class="btn btn-primary" v-on:click="doProductGet">确定</button>
+        <br>
+        <br>
+
+        <span class="text-success"> {{infoProductUpdate}}</span>
+        <div v-if="visibleProductUpdate">
+            <h2>该商品原有信息如下</h2>
+            <br>
+
+            <div class="form-group row">
+                <label for="id2" class="col-sm-2 col-form-label">商品id</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control" id="id2" v-model="productUpdate.id" v-on:focus="willProductAdd">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name2" class="col-sm-2 col-form-label">商品名称</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name2" v-model="productUpdate.name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="price2" class="col-sm-2 col-form-label">商品价格</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="price2" v-model="productUpdate.price">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="stock2" class="col-sm-2 col-form-label">商品库存</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="stock2" v-model="productUpdate.stock">
+                </div>
+            </div>
+            <button class="btn btn-primary" v-on:click="doProductUpdate">提交更改</button>
+            <button class="btn btn-danger" v-on:click="doProductDelete">删除商品</button>
+        </div>
+    </div>
+
+<script src="/web-resources/lib/vue.js"></script>
+<script src="/web-resources/lib/axios.js"></script>
+<script src="/web-resources/manage/product.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)http://192.168.1.102:8088/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="https://v4.bootcss.com/favicon.ico">
+
+  <title>喵喵商城</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" type="text/css" href="/web-resources/lib/bootstrap.css">
+
+  <!-- Custom styles for this template -->
+  <link href="/web-resources/lib/signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+  <!--表单中 method="POST"设置提交方法，默认GET。 name="key"设置的是get或post方法中的key值。-->
+  <form class="form-signin" id="form" action="http://192.168.1.102:8088/login" method="POST">
+    
+    <h1 class="h3 mb-3 font-weight-normal">喵喵商城后台管理</h1>
+    <label for="userName" class="sr-only">请输入账号：</label>
+    <input type="text" name="userName" id="userName" class="form-control" placeholder="账号：" required="" autofocus="">
+    <label for="password" class="sr-only">请输入密码：</label>
+    <input type="password" name="password" id="password" class="form-control" placeholder="密码：" required="">
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> 记住密码
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+    <p class="mt-5 mb-3 text-muted">© 喵喵 2018</p>
+  </form>
+</body></html>

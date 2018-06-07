@@ -1,21 +1,56 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
   <display-name>Archetype Created Web Application</display-name>
 
+  <!--转码，将其他码转为UTF-8-->
+  <!--filter过滤器元素将一个名字与一个实现javax.servlet.Filter接口的类相关联-->
+  <!-- 在Spring框架中是如何解决从页面传来的字符串的编码问题的呢？
+  下面我们来看看Spring框架给我们提供过滤器CharacterEncodingFilter
+  这个过滤器就是针对于每次浏览器请求进行过滤的，然后再其之上添加了父类没有的功能即处理字符编码。
+  其中encoding用来设置编码格式，forceEncoding用来设置是否理会 request.getCharacterEncoding()方法，设置为true则强制覆盖之前的编码格式。-->
+  <filter>
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <!--<filter-mapping></filter-mapping> 一旦命名了一个过滤器，就要利用filter-mapping元素把它与一个或多个servlet或JSP页面相关联。 -->
+  <filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
   <servlet>
     <servlet-name>dispatcher</servlet-name>
     <!--在DispatcherServlet的初始化过程中，框架会在web应用的 WEB-INF文件夹下寻找名为[servlet-name]-servlet.xml 的配置文件作为配置文件载入web工程中，生成文件中定义的bean。-->
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:applicationContext.xml</param-value>
+    </init-param>
     <load-on-startup>1</load-on-startup>
     <!--是启动顺序，让这个Servlet随Servlet容器一起启动。使得Dispatcher在服务器启动的时候就初始化-->
   </servlet>
 
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
-    <url-pattern>*.do</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/web-resources/*</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>web-resources/html/login.html</welcome-file>
+  </welcome-file-list>
 </web-app>

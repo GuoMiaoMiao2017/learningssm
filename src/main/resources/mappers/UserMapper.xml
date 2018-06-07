@@ -13,13 +13,13 @@
   <sql id="Base_Column_List" >
     id, name, password, sex, is_vip
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="int" >
     select 
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="int" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -92,4 +92,17 @@
       is_vip = #{isVip,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="checkUsername" resultType="int" parameterType="string">
+    select count(1) from user
+    where name = #{username}
+  </select>
+
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where name = #{userName}
+    and password = #{password}
+  </select>
 </mapper>

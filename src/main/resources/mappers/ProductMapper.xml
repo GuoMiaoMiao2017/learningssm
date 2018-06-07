@@ -81,4 +81,11 @@
       stock = #{stock,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from product
+    order by id asc
+  </select>
 </mapper>
