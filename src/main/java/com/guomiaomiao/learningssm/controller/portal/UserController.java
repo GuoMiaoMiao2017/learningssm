@@ -1,5 +1,6 @@
 package com.guomiaomiao.learningssm.controller.portal;
 
+import com.guomiaomiao.learningssm.other.Single2;
 import com.guomiaomiao.learningssm.common.Const;
 import com.guomiaomiao.learningssm.common.ServerResponse;
 import com.guomiaomiao.learningssm.pojo.User;
@@ -18,14 +19,15 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @Autowired
     private IUserService iUserService;
+    @Autowired
+    private Single2 s2;
     @RequestMapping("/login")
-    public String managerLogin(String userName, String password, HttpSession session) {
+    public String login(String userName, String password, HttpSession session) {
+        //Single s = Single.getSingle();
+        System.out.println("count = " + s2.getCount());
+
         System.out.println(userName + "***********" + password);
         ServerResponse<User> response = iUserService.login(userName, password);
-//        if (("a".equals(userName) && "1".equals(password))) {
-//            session.setAttribute(Const.CURRENT_USER, new User(null,userName,password,null,null));
-//            return "web-resources/html/welcome.html";
-//        }
         if (response.isSuccess()) {
             System.out.println("输对了！！！！！");
             session.setAttribute(Const.CURRENT_USER, response.getData());

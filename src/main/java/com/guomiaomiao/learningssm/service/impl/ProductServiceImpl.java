@@ -1,5 +1,6 @@
 package com.guomiaomiao.learningssm.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.guomiaomiao.learningssm.common.ServerResponse;
 import com.guomiaomiao.learningssm.dao.ProductMapper;
 import com.guomiaomiao.learningssm.pojo.Product;
@@ -19,6 +20,7 @@ public class ProductServiceImpl implements IProductService {
     private ProductMapper productMapper;
 
     public List<Product> getProductList() {
+//        PageHelper.startPage(pageNum, pageSize);
         return productMapper.selectList();
     }
     public ServerResponse add(Product product) {
