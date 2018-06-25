@@ -2,6 +2,7 @@ package com.guomiaomiao.learningssm.service;
 
 import com.guomiaomiao.learningssm.common.ServerResponse;
 import com.guomiaomiao.learningssm.pojo.Product;
+import com.guomiaomiao.learningssm.vo.ProductPriceVo;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface IProductService {
     ServerResponse delete(Integer id);
     Product get(Integer id);
     ServerResponse update(Product product);
+    List<Product> getProductListByPrice(ProductPriceVo productPriceVo);
 }

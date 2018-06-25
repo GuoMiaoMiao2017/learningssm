@@ -1,6 +1,7 @@
 package com.guomiaomiao.learningssm.dao;
 
 import com.guomiaomiao.learningssm.pojo.Product;
+import com.guomiaomiao.learningssm.vo.ProductPriceVo;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface ProductMapper {
     int updateByPrimaryKey(Product record);
 
     List<Product> selectList();
+
+    List<Product> getProductListByPrice(ProductPriceVo productPriceVo);
 }

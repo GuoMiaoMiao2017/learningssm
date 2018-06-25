@@ -3,6 +3,7 @@ const url_productAdd = "/manage/product/add";
 const url_productUpdate = "/manage/product/update";
 const url_productGet = "/manage/product/get";
 const url_productDelete = "/manage/product/delete";
+const url_productListByPrice = "/manage/product/getByPrice";
 
 const product = new Vue({
     el: '#product',
@@ -17,6 +18,10 @@ const product = new Vue({
         visibleProductUpdate: false,
 
         infoProductUpdate: undefined,
+
+        productPriceVo: {},
+        productListByPrice: [],
+        visibleProductListByPrice: false,
     },
     mounted: function () {
         this.doProductList();
@@ -64,6 +69,21 @@ const product = new Vue({
                 this.visibleProductUpdate = true;
             console.log(this.productUpdate);})
             .catch(function (error) {
+                console.log(error);});
+        },
+
+        doProductListByPrice: function() {
+            const params = new URLSearchParams();
+            params.append("smallPrice", this.productPriceVo.smallPrice);
+            params.append("bigPrice", this.productPriceVo.bigPrice);
+
+            axios.post(url_productListByPrice, params)
+                .then(response => {
+                console.log("doProductListByPrice ok");
+            this.productListByPrice = response.data;
+            this.visibleProductListByPrice = true;
+            console.log(response);})
+        .catch(function (error) {
                 console.log(error);});
         },
 

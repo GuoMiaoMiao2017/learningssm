@@ -88,4 +88,12 @@
     from product
     order by id asc
   </select>
+
+  <select id="getProductListByPrice" resultMap="BaseResultMap" parameterType="com.guomiaomiao.learningssm.vo.ProductPriceVo">
+    SELECT
+    <include refid="Base_Column_List" />
+    from product
+    where price &gt;= #{smallPrice}
+    and price &lt;= #{bigPrice}
+  </select>
 </mapper>

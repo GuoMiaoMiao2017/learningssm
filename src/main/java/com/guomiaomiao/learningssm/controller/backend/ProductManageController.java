@@ -7,6 +7,7 @@ import com.guomiaomiao.learningssm.pojo.Product;
 import com.guomiaomiao.learningssm.pojo.User;
 import com.guomiaomiao.learningssm.service.IProductService;
 import com.guomiaomiao.learningssm.service.IUserService;
+import com.guomiaomiao.learningssm.vo.ProductPriceVo;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,6 +49,21 @@ public class ProductManageController {
             createExcel(list);
             List<Product> listProduct = readExcel();
             System.out.println(listProduct.toString());
+            return list;
+        }
+    }
+
+    @RequestMapping("getByPrice")
+    @ResponseBody
+    public List<Product> listByPrice(HttpSession session, ProductPriceVo productPriceVo) {
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if (user == null) {
+            ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,请登录管理员");
+            System.out.println("请输入账号与密码");
+            return null;
+        } else {
+            System.out.println("价格列表··············");
+            List<Product> list = iProductService.getProductListByPrice(productPriceVo);
             return list;
         }
     }

@@ -5,6 +5,7 @@ import com.guomiaomiao.learningssm.common.ServerResponse;
 import com.guomiaomiao.learningssm.dao.ProductMapper;
 import com.guomiaomiao.learningssm.pojo.Product;
 import com.guomiaomiao.learningssm.service.IProductService;
+import com.guomiaomiao.learningssm.vo.ProductPriceVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,11 @@ public class ProductServiceImpl implements IProductService {
 //        PageHelper.startPage(pageNum, pageSize);
         return productMapper.selectList();
     }
+
+    public List<Product> getProductListByPrice(ProductPriceVo productPriceVo) {
+        return productMapper.getProductListByPrice(productPriceVo);
+    }
+
     public ServerResponse add(Product product) {
         if (product != null) {
             int rowCount = productMapper.insert(product);
